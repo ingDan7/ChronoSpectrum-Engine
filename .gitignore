@@ -48,3 +48,6 @@ Thumbs.db
 ## --- Otros artefactos temporales ---
 *.log
 *.tmp
+
+## --- Notas internas (no se suben al repo) ---
+ROADMAP.md
