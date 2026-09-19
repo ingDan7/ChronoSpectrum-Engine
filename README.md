@@ -63,9 +63,9 @@ Los algoritmos de este proyecto están basados en investigación académica real
 
 - Wu, H.-Y. et al. (2012). *Eulerian Video Magnification for Revealing Subtle Changes in the World*. MIT CSAIL / SIGGRAPH 2012. [Paper](http://people.csail.mit.edu/mrub/papers/vidmag.pdf) · [Página del proyecto](https://people.csail.mit.edu/mrub/evm/)
 - Foroosh, H., Zerubia, J., & Berthod, M. *Extension of Phase Correlation to Subpixel Registration*. [PDF](https://www.cs.ucf.edu/~foroosh/subreg.pdf)
-- [Phase correlation — Wikipedia](https://en.wikipedia.org/wiki/Phase_correlation)
+- Kuglin, C. D. & Hines, D. C. (1975). *The Phase Correlation Image Alignment Method*. IEEE Conference on Cybernetics and Society. [Registro / resumen](https://www.semanticscholar.org/paper/The-phase-correlation-image-alignment-method-Kuglin/e4482d429ddd155f4c5b1299dec71d4faa10d241)
 - [OpenCV — Periodic Noise Removing Filter (tutorial)](https://docs.opencv.org/4.x/d2/d0b/tutorial_periodic_noise_removing_filter.html)
-- [Butterworth filter — Wikipedia](https://en.wikipedia.org/wiki/Butterworth_filter)
+- Butterworth, S. (1930). *On the Theory of Filter Amplifiers*. Experimental Wireless & the Wireless Engineer, Vol. 7, pp. 536-541. [PDF](https://people.eecs.ku.edu/~demarest/212/Buttorworth%20Orig.%20Paper.pdf)
 - Gonzalez, R. & Woods, R. *Digital Image Processing*, 3rd ed., Sección 4.10.2 (filtros notch reject).
 
 El fundamento matemático completo de cada módulo (fórmulas, derivaciones y las decisiones de implementación verificadas contra estas fuentes) está documentado en `ROADMAP.md` y en los comentarios del código fuente, no aquí — este documento es la presentación del proyecto, no la referencia técnica de implementación.
