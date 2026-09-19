@@ -1,0 +1,78 @@
+/**
+ * Estilos de soporte para Section2 (HUD "Mouse Spotlight") que no pueden
+ * expresarse como utilidades de Tailwind puras: el pseudo-elemento
+ * ::before que actúa de "linterna" guiada por el cursor y su variante
+ * roja para la tarjeta de error. Todo queda con ámbito bajo
+ * `.section2-hud` para no filtrarse a otras secciones de la app.
+ *
+ * Origen: interfaz.html (mockup HTML entregado por Daniel), portado
+ * tal cual — ver Section2.tsx para el resto de la implementación.
+ */
+
+/*
+ * El proyecto redefine --radius-sm / --radius-lg en src/index.css como
+ * parte del sistema de radios de shadcn. Con Tailwind v4 y `@theme inline`,
+ * esas variables NO quedan como var(--radius-sm) dentro de la utilidad
+ * `.rounded-sm` — se inlinean textualmente como calc(var(--radius) * 0.6),
+ * es decir, la utilidad depende de --radius directamente, no de
+ * --radius-sm/--radius-lg (verificado compilando el CSS real). Por eso
+ * sobreescribir --radius-sm/--radius-lg en un selector con más scope no
+ * tiene efecto: hay que forzar el border-radius sobre las propias clases.
+ * Esto restaura los valores nativos de Tailwind (rounded-sm: 0.125rem,
+ * rounded-lg: 0.5rem) que usa interfaz.html, solo dentro de .section2-hud,
+ * sin tocar el radio global de shadcn que usa el resto de la app.
+ */
+.section2-hud .rounded-sm {
+  border-radius: 0.125rem;
+}
+
+.section2-hud .rounded-lg {
+  border-radius: 0.5rem;
+}
+
+.section2-hud .rounded-l-lg {
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+}
+
+.section2-hud .step {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+.section2-hud .step-card {
+  position: relative;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, filter 0.3s ease;
+  /* Estado inicial "apagado": sin color, gris plano, antes de que el
+     mouse se mueva por primera vez — a pedido de Daniel: los 5 Steps
+     arrancan sin vida y se encienden individualmente al hacer hover
+     (ver el toggle de filter en Section2.tsx, handleMouseMove). */
+  filter: grayscale(1) brightness(0.7);
+}
+
+.section2-hud .step-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    350px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(52, 211, 153, 0.14),
+    transparent 80%
+  );
+  pointer-events: none;
+  opacity: var(--glow-opacity, 0);
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.section2-hud .step-card.error-card::before {
+  background: radial-gradient(
+    350px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(245, 158, 11, 0.16),
+    transparent 80%
+  );
+}
+
+.section2-hud .hud-bar {
+  transition: opacity 0.2s ease;
+}

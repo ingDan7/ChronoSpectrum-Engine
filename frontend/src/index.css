@@ -1,0 +1,195 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource-variable/geist";
+@import "@fontsource-variable/jetbrains-mono";
+@import "@fontsource-variable/space-grotesk";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+    --font-heading: var(--font-sans);
+    --font-sans: 'Geist Variable', sans-serif;
+    --font-mono: 'JetBrains Mono Variable', ui-monospace, monospace;
+    --font-display: 'Syne', 'Space Grotesk Variable', sans-serif;
+    --color-sidebar-ring: var(--sidebar-ring);
+    --color-sidebar-border: var(--sidebar-border);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar: var(--sidebar);
+    --color-chart-5: var(--chart-5);
+    --color-chart-4: var(--chart-4);
+    --color-chart-3: var(--chart-3);
+    --color-chart-2: var(--chart-2);
+    --color-chart-1: var(--chart-1);
+    --color-ring: var(--ring);
+    --color-input: var(--input);
+    --color-border: var(--border);
+    --color-destructive: var(--destructive);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-accent: var(--accent);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-muted: var(--muted);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-secondary: var(--secondary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-primary: var(--primary);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-popover: var(--popover);
+    --color-card-foreground: var(--card-foreground);
+    --color-card: var(--card);
+    --color-foreground: var(--foreground);
+    --color-background: var(--background);
+    --radius-sm: calc(var(--radius) * 0.6);
+    --radius-md: calc(var(--radius) * 0.8);
+    --radius-lg: var(--radius);
+    --radius-xl: calc(var(--radius) * 1.4);
+    --radius-2xl: calc(var(--radius) * 1.8);
+    --radius-3xl: calc(var(--radius) * 2.2);
+    --radius-4xl: calc(var(--radius) * 2.6);
+
+    /* ---------------------------------------------------------------
+     * Design tokens del "rack de laboratorio" (Fase 4).
+     * Deliberadamente independientes de --background/--foreground y
+     * de la clase .dark: esta estética es oscura de forma permanente,
+     * no un tema alternable — ver ROADMAP.md, Fase 4, Decisiones
+     * abiertas, sobre por qué se separan de los tokens shadcn base.
+     * ------------------------------------------------------------- */
+    /* Antes #0b0f17/#0a0e16/#1c2028/#262a33 — tenían el canal B más alto
+       que R/G (azul grisáceo), igual que rack-text-dim antes de su fix.
+       Daniel pidió eliminar todo el azul de la interfaz: estos son ahora
+       neutral reales (mismo canal R=G=B, sin matiz), manteniendo la
+       misma luminosidad de cada uno. */
+    --color-rack-bg: #0f0f0f;
+    --color-rack-bg-deep: #0e0e0e;
+    --color-rack-panel: #202020;
+    --color-rack-panel-high: #2a2a2a;
+    /* Antes #64748b/#475569 (Tailwind slate = azul grisáceo). Daniel
+       pidió eliminar todo el azul de la interfaz — estos son ahora
+       neutral-500/600 reales (mismo canal R=G=B, sin matiz). */
+    --color-rack-text-dim: #737373;
+    --color-rack-text-dim-2: #525252;
+    --color-rack-accent: #00ff66;
+    --color-rack-accent-2: #10b981;
+    --color-rack-warn: #f59e0b;
+    --color-rack-accent-muted: #34d399;
+
+    /* ---------------------------------------------------------------
+     * Design tokens del "Mouse Spotlight HUD" (Section2).
+     * Portados tal cual desde interfaz.html (mockup de Daniel) — en
+     * paralelo a --color-rack-*, no los reemplazan: Section1 sigue
+     * usando rack-*, Section2 usa hud-*.
+     * ------------------------------------------------------------- */
+    --color-hud-bg: #121413;
+    --color-hud-card: #181b19;
+    --color-hud-inner: #1f2320;
+    --color-hud-border: #2b322d;
+    --color-hud-neon: #00ff66;
+    --color-hud-neon-muted: #34d399;
+    --color-hud-dim: #c2e0c6;
+    /* Antes #ff3535 (rojo) — Daniel pidió un color que combine más con
+       el resto de la paleta (menta + ámbar). Reusa el mismo ámbar del
+       diagrama del Step 02 (--color-rack-warn) en vez de sumar un
+       tercer color nuevo a la interfaz. */
+    --color-hud-error: #f59e0b;
+}
+
+:root {
+    --background: oklch(1 0 0);
+    --foreground: oklch(0.145 0 0);
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0.145 0 0);
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.145 0 0);
+    --primary: oklch(0.205 0 0);
+    --primary-foreground: oklch(0.985 0 0);
+    --secondary: oklch(0.97 0 0);
+    --secondary-foreground: oklch(0.205 0 0);
+    --muted: oklch(0.97 0 0);
+    --muted-foreground: oklch(0.556 0 0);
+    --accent: oklch(0.97 0 0);
+    --accent-foreground: oklch(0.205 0 0);
+    --destructive: oklch(0.577 0.245 27.325);
+    --border: oklch(0.922 0 0);
+    --input: oklch(0.922 0 0);
+    --ring: oklch(0.708 0 0);
+    --chart-1: oklch(0.87 0 0);
+    --chart-2: oklch(0.556 0 0);
+    --chart-3: oklch(0.439 0 0);
+    --chart-4: oklch(0.371 0 0);
+    --chart-5: oklch(0.269 0 0);
+    --radius: 0.625rem;
+    --sidebar: oklch(0.985 0 0);
+    --sidebar-foreground: oklch(0.145 0 0);
+    --sidebar-primary: oklch(0.205 0 0);
+    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-accent: oklch(0.97 0 0);
+    --sidebar-accent-foreground: oklch(0.205 0 0);
+    --sidebar-border: oklch(0.922 0 0);
+    --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+    --background: oklch(0.145 0 0);
+    --foreground: oklch(0.985 0 0);
+    --card: oklch(0.205 0 0);
+    --card-foreground: oklch(0.985 0 0);
+    --popover: oklch(0.205 0 0);
+    --popover-foreground: oklch(0.985 0 0);
+    --primary: oklch(0.922 0 0);
+    --primary-foreground: oklch(0.205 0 0);
+    --secondary: oklch(0.269 0 0);
+    --secondary-foreground: oklch(0.985 0 0);
+    --muted: oklch(0.269 0 0);
+    --muted-foreground: oklch(0.708 0 0);
+    --accent: oklch(0.269 0 0);
+    --accent-foreground: oklch(0.985 0 0);
+    --destructive: oklch(0.704 0.191 22.216);
+    --border: oklch(1 0 0 / 10%);
+    --input: oklch(1 0 0 / 15%);
+    --ring: oklch(0.556 0 0);
+    --chart-1: oklch(0.87 0 0);
+    --chart-2: oklch(0.556 0 0);
+    --chart-3: oklch(0.439 0 0);
+    --chart-4: oklch(0.371 0 0);
+    --chart-5: oklch(0.269 0 0);
+    --sidebar: oklch(0.205 0 0);
+    --sidebar-foreground: oklch(0.985 0 0);
+    --sidebar-primary: oklch(0.488 0.243 264.376);
+    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-accent: oklch(0.269 0 0);
+    --sidebar-accent-foreground: oklch(0.985 0 0);
+    --sidebar-border: oklch(1 0 0 / 10%);
+    --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+    }
+  body {
+    @apply bg-background text-foreground;
+    }
+  html {
+    @apply font-sans;
+    }
+}
+
+/*
+ * Oculta la barra de scroll visualmente sin desactivar el scroll — el
+ * elemento sigue siendo scrolleable con mouse/trackpad/touch/teclado,
+ * solo no se dibuja la barra nativa. Pedido explícito de Daniel para el
+ * `<main>` de `App.tsx`. Necesita las 3 reglas: `scrollbar-width` cubre
+ * Firefox, `-ms-overflow-style` cubre Edge/IE viejo, y el pseudo-elemento
+ * `::-webkit-scrollbar` cubre Chrome/Safari/Edge moderno (WebKit/Blink).
+ */
+.hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}

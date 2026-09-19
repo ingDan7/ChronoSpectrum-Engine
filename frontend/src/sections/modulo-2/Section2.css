@@ -1,0 +1,59 @@
+/**
+ * Estilos de soporte para Section2 de Módulo 2 (HUD "Mouse Spotlight").
+ *
+ * Copia intencional de `sections/modulo-1/Section2.css` — no un archivo
+ * huérfano ni una versión desactualizada: el efecto (pseudo-elemento
+ * `::before` que sigue al cursor, estado "apagado" inicial, radios
+ * nativos de Tailwind dentro de `.section2-hud`) es genérico, reutilizado
+ * a propósito en los dos módulos que usan este sistema visual. Si algo
+ * del efecto cambia, hay que replicarlo en ambos archivos.
+ *
+ * Origen real: interfaz.html (mockup HTML entregado por Daniel), portado
+ * tal cual en `sections/modulo-1/Section2.tsx` — ver ese archivo para el
+ * detalle original.
+ */
+
+.section2-hud .rounded-sm {
+  border-radius: 0.125rem;
+}
+
+.section2-hud .rounded-lg {
+  border-radius: 0.5rem;
+}
+
+.section2-hud .rounded-l-lg {
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+}
+
+.section2-hud .step {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+.section2-hud .step-card {
+  position: relative;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, filter 0.3s ease;
+  /* Estado inicial "apagado": sin color, gris plano, antes de que el
+     mouse se mueva por primera vez — mismo comportamiento que Módulo 1. */
+  filter: grayscale(1) brightness(0.7);
+}
+
+.section2-hud .step-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    350px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(52, 211, 153, 0.14),
+    transparent 80%
+  );
+  pointer-events: none;
+  opacity: var(--glow-opacity, 0);
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.section2-hud .hud-bar {
+  transition: opacity 0.2s ease;
+}

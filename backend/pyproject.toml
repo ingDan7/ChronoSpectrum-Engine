@@ -1,0 +1,11 @@
+[project]
+name = "backend"
+version = "0.1.0"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi[standard]>=0.141.1",
+    "numpy>=2.5.3",
+    "opencv-python-headless>=5.0.0.93",
+    "python-dotenv>=1.0.1",
+    "slowapi>=0.1.10",
+]
