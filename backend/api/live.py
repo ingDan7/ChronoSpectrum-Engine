@@ -28,7 +28,7 @@ router = APIRouter()
 
 # Tope manual de conexiones WS concurrentes (slowapi no cubre rutas @websocket).
 MAX_TOTAL_WS_CONNECTIONS = 3
-MAX_WS_CONNECTIONS_PER_IP = 1
+MAX_WS_CONNECTIONS_PER_IP = 2
 
 _active_connections_by_ip: dict[str, int] = {}
 _total_active_connections = 0
