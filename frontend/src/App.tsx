@@ -23,12 +23,14 @@ function App() {
 
   return (
     <>
-      <NavDrawer
-        modules={MODULES}
-        active={activeModule}
-        onSelect={(value) => navigate(`/${value}`)}
-        onHome={() => navigate("/")}
-      />
+      {location.pathname !== "/" && (
+        <NavDrawer
+          modules={MODULES}
+          active={activeModule}
+          onSelect={(value) => navigate(`/${value}`)}
+          onHome={() => navigate("/")}
+        />
+      )}
 
       <main className="hide-scrollbar h-dvh w-full overflow-y-auto snap-y snap-mandatory scroll-smooth bg-rack-bg text-neutral-200">
         <Routes>
