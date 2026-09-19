@@ -137,7 +137,7 @@ export async function checkHealth(): Promise<ApiResult<{ status: string }>> {
       kind: "network",
       message: aborted
         ? "El servidor no respondió dentro del tiempo de espera."
-        : "No se pudo conectar con el backend. Verifica que esté corriendo, que VITE_API_URL apunte al lugar correcto, o que un bloqueador de anuncios/extensión de privacidad no esté bloqueando la petición a /health.",
+        : "No se pudo conectar con el backend. Revisa que tu navegador (Chrome o Edge) no tenga activo un bloqueador de anuncios o una extensión de privacidad bloqueando la petición, y vuelve a intentar.",
     }
   }
   clearTimeout(timeoutId)
