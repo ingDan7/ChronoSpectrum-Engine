@@ -161,6 +161,8 @@ async def motion_magnifier_ws(websocket: WebSocket) -> None:
                     "psd": psd,
                 }
             )
+        except WebSocketDisconnect:
+            pass  # El cliente ya se desconectó; no hay a quién responder.
         except ValueError as exc:
             await websocket.send_json({"type": "error", "detail": str(exc)})
         finally:
@@ -240,6 +242,8 @@ async def spectrum_cleaner_ws(websocket: WebSocket) -> None:
                     "mask_jpeg_base64": array_to_jpeg_base64(mask),
                 }
             )
+        except WebSocketDisconnect:
+            pass  # El cliente ya se desconectó; no hay a quién responder.
         except ValueError as exc:
             await websocket.send_json({"type": "error", "detail": str(exc)})
         finally:
@@ -319,6 +323,8 @@ async def phase_correlator_ws(websocket: WebSocket) -> None:
                     "residual_error_pct": residual_error_pct,
                 }
             )
+        except WebSocketDisconnect:
+            pass  # El cliente ya se desconectó; no hay a quién responder.
         except ValueError as exc:
             await websocket.send_json({"type": "error", "detail": str(exc)})
         finally:
